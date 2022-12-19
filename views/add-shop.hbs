@@ -1,0 +1,24 @@
+<h1>உங்கள் கடையின் விவரங்கள் : </h1>
+
+<form action="/shop/add/ok" method="post" name="form">
+    name (English) : <input type="text" name="shopNameEnglish"><br>
+    Do you want to auto translate to Tamil ? <br>
+    Yes <input type="radio" name="translate" value="YES" id="yes">
+    No <input type="radio" name="translate" value="NO" id="no">
+    <div id="hideform" style="display:block">
+            name (Tamil) : <input type="text" name="shopNameTamil">
+    </div>
+    phone : <input type="mobile" name="shopPhone"> 
+    <input type="submit" value="submit" name="submit">
+</form>
+
+<script>
+    var radios = document.forms["form"].elements["translate"];
+    radios[0].onclick = function() {
+        document.getElementById("hideform").style.display = "none";
+        document.forms["form"].elements["submit"].value = "translate";
+    }
+    radios[1].onclick = function() {
+        document.getElementById("hideform").style.display = "block";
+    }
+</script>

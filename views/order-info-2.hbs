@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="vieworder.css"> -->
+  <title>View Specific Order</title>
+  <style>
+    *{
+      font-family: 'Nova Flat', cursive;
+      font-family: 'Roboto', sans-serif;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body{
+      color: white;
+      background-color: #161616;
+    }
+
+    .bold{
+      color: #e51e2a;
+      font-size: 350%;
+    }
+
+    h1{
+      color: #e51e2a;
+      font-size: 250%;
+      text-align: center;
+    }
+
+    #name{
+      color: #006eff;
+    }
+
+    .details{
+      display: flex;
+      justify-content: center;
+    }
+
+    .details h1{
+      padding-right: 8%;
+    }
+
+    table{
+      font-size: 150%;
+      border-collapse: collapse;
+      margin: auto;
+      width:80%
+    }
+
+    th{
+      background-color: #e51e2a;
+    }
+
+    th, td {
+      padding: 1vw;
+      border: 1px solid #e51e2a;
+      /* border-bottom: 1px solid #F64740; */
+    }
+
+    tbody tr{
+      border-bottom: 1px solid #e51e2a;
+      text-align : center;
+    }
+
+    #t0{
+      padding-left: 0%;
+    }
+
+    #t2{
+      padding-right: 5%;
+    }
+
+    .total{
+      color: #F64740;
+    }
+
+    h2{
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    a{
+      text-decoration: none;
+      color:white;
+      background-color: #080708;
+      padding: 0.5%;
+      border-radius: 0.5vw;
+      margin: 0.75%;
+      font-size: 125%;
+    }
+
+    .b2{
+      background-color: #e51e2a;
+    }
+
+    .b3{
+      background-color: #006eff;;
+    }
+
+    .button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="details">
+    <h1 class="bold">{{cart.shop.shopNameTamil}}</h1>
+    <div>
+      <h3>வாடிக்கையாளர் பெயர்: <span id="name">{{cart.user.displayName}}</span></h3>
+      <h3>மின் அஞ்சல்: <span id="name">{{cart.user.emailId}}</span></h3>
+      <h3>ஆர்டர் எண்: <span id="name">{{cart._id}}</span></h3>
+      <h3>ஆர்டை நேரம்: <span id="name">{{cart.date}} - {{cart.time}}</span></h3>
+    </div>
+  </div>
+  <hr>
+  <h1 >ஆர்டர் விவரங்கள் : </h1>
+  <table  class="table">
+    <thead>
+        <tr id="head">
+        <th id="t0">எண்</th>
+        <th id="t1">பெயர்</th>
+        <th id="t2">விலை</th>
+        <th id="t3">எண்ணிக்கை</th>
+        <th id="t4">தொகை</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each cart.itemsOrdered}}
+            {{#if itemQuantity}} 
+                <tr>
+                    <td>{{item._id}}</td>
+                    <td>{{item.itemNameTamil}}</td>
+                    <td>{{item.itemPrice}}</td>
+                    <td>{{itemQuantity}}</td>
+                    <td>{{itemTotal}}</td>
+                <tr>
+            {{/if}}
+        {{/each}}
+
+    </tbody>
+  </table>
+  <h2>கூட்டுத் தொகை : <span class="total">Rs. {{total}}</span> </h2>
+</body>
+</html>

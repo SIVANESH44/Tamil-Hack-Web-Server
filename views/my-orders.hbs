@@ -1,0 +1,67 @@
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>வணக்கம் ! <span class="welcome">{{name}}</span> !</h2>
+        <h5>உங்கள் ஆர்டர்கள் : </h5>
+    </div>
+</div>
+
+
+{{#if orders}}
+    {{#each orders}}
+    {{#unless delivered}}
+        {{#if shop}}
+        <div class="flex">
+            <div class="shopkeeper-shops" style="padding-bottom:20px">
+                <div class="card" style="width: 18rem; border-left: 6px solid red;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:16px">{{shop.shopNameTamil}} 
+                            <a href="/order/{{_id}}/view" style="margin-left:20px" class="btn btn-dark btn-sm">காட்டு</a>
+                        </h5>
+                        <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold">விவரம் :  <span class="welcome">{{date}} - {{time}}</span></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    {{/unless}}
+    {{/each}}
+{{else}}
+    <div>
+        ஆர்டர்கள் எதுவும் இல்லை
+    </div>
+{{/if}}
+
+<br>
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2 style="color: white">ஆர்டர்கள் வரலாறு : </h2>
+    </div>
+</div>
+
+{{#if orders}}
+    {{#each orders}}
+    {{#if delivered}}
+        {{#if shop}}
+        <div class="flex">
+            <div class="shopkeeper-shops" style="padding-bottom:20px">
+                <div class="card" style="width: 18rem; border-left: 6px solid green;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:16px">{{shop.shopNameTamil}} 
+                            <a href="/order/{{_id}}/view" style="margin-left:20px" class="btn btn-success btn-sm">காட்டு</a>
+                        </h5>
+                        <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold; ">விவரம் :  <span class="welcome" style="color:green">{{date}} - {{time}}</span></span></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    {{/if}}
+    {{/each}}
+{{else}}
+    <div>
+        ஆர்டர்கள் எதுவும் இல்லை
+    </div>
+{{/if}}
+<br>
+<br>

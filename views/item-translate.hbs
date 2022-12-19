@@ -1,0 +1,192 @@
+<style>
+    *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.circle
+  {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:#e51e2a;
+      clip-path:circle(70% at right -20%)
+  }
+
+body{
+  background-color: #181818;
+}
+#fileInput{
+  padding-top:1.2%;
+}
+
+form{
+  margin-top: 0.5rem;
+  height: 85%;
+  width: 55%;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 53%;
+    left: 50%;
+    border-radius: 10px;
+    /* backdrop-filter: blur(10px); */
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 25px 35px;
+}
+
+h1,form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+h1{
+  text-align: center;
+  margin-top: 8%;
+
+}
+
+label{
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    padding-bottom:5px;
+}
+
+label:first-child{
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+.btn{
+  background-color: rgb(0, 110, 255);
+  padding:5px;
+  border-radius:3px;
+  font-weight: 600;
+}
+.btn:hover{
+  box-shadow: 0 1px 6px rgb(4, 107, 241);
+  transition: all 0.3s
+}
+input{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+input[type=radio]{
+  display: inline-block;
+  height:auto !important;
+  width:auto !important;
+}
+
+select,option{
+  color: black;
+  padding: 7px;
+  margin-top: 5px;
+}
+
+.button{
+  background-color: #E51D2A ;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+#EtoT{
+  background-color: #1F72BD;
+  margin-top: 10px;
+}
+
+
+#hide{
+  display:none;
+  font-weight: 700;
+  color: #E51D2A !important;
+}
+</style>
+
+{{!-- <h1>உங்கள் கடையின் விவரங்கள் : </h1> --}}
+<div class="circle" style="clip-path:circle(70% at right -50%)"></div>
+  <div class="card">
+    <div className="addprod">
+        <form action="/item/{{shopid}}/add/ok" method="post" name="form" enctype="multipart/form-data">
+          <div>
+            <label for="NameEn"><span style="color:rgb(131, 131, 255)">Item Name </span>(In English): </label>
+            <input type="text" name="itemNameEnglish" id="itemNameEnglish" required value="{{values.itemNameEnglish}}" />
+          </div>
+          <!-- <div>
+            <label><span style="color:rgb(131, 131, 255)">Do you want to autotranslate ?</span>
+              &nbsp;<input type="radio" name="translate" value="YES" id="yes"><large style="color: rgb(233, 66, 233);">&nbsp; Yes</large> 
+              &nbsp;<input type="radio" name="translate" value="NO" id="no"><large style="color: rgb(233, 66, 233)">&nbsp; No</large>  </label>
+          </div> -->
+          <div>
+            <label for="NameTa"><span style="color:rgb(131, 131, 255)">Item Name </span> (In Tamil):
+              <span id="hide">(Auto translated) </span>
+            </label>
+            <div class="hideform">
+              <input type="text" name="itemNameTamil" id="NameTa" value="{{itemNameTamil}}"/>
+            </div>
+          </div>
+          <div>
+            <label for="price"><span style="color:rgb(131, 131, 255)">Stock Available </span> </label>
+            <input type="number" name="itemQuantity" id="price" required value="{{values.itemQuantity}}"/>
+          </div>
+          <div>
+            <label for="Stock"><span style="color:rgb(131, 131, 255)">Item Cost </span> </label>
+            <input type="number" name="itemPrice" id="Stock" required value="{{values.itemPrice}}"/>
+          </div>
+          <div>
+            <label for="fileInput"><span style="color:rgb(131, 131, 255)">Item Image </span></label>
+            <input id="fileInput" name="itemImage" type="file" accept="image/*"/>
+          </div>
+          <br>
+          <div id="flexbuttons">
+            <input type="submit" value="Submit" name="submit" id="Submit" class="button" /><br>
+          </div>   
+          </form>
+      </div>
+  </div>
+
+{{!-- <form action="/item/{{shopid}}/add/ok" method="post" name="form">
+    Item name (English) : <input type="text" name="itemNameEnglish"><br>
+    Do you want to auto translate to Tamil ? <br>
+    Yes <input type="radio" name="translate" value="YES" id="yes">
+    No <input type="radio" name="translate" value="NO" id="no">
+    <div id="hideform" style="display:block">
+            Item name (Tamil) : <input type="text" name="itemNameTamil">
+    </div>
+    item price : <input type="number" name="itemPrice"><br>
+    item quantity : <input type="number" name="itemQuantity"><br>
+    <input type="submit" value="submit" name="submit">
+</form> --}}
+
+<!-- <script>
+  var radios = document.forms["form"].elements["translate"];
+  radios[0].onclick = function() {
+    document.forms["form"].elements["NameTa"].value = "Field will be auto translated !";
+    document.getElementById("hide").style.display = "inline-block";
+    document.forms["form"].elements["NameTa"].readOnly = true;
+    document.forms["form"].elements["NameTa"].required = false;
+    document.forms["form"].elements["submit"].value = "Translate";
+  }
+  radios[1].onclick = function() {
+    document.forms["form"].elements["NameTa"].value = "";
+    document.getElementById("hide").style.display = "none";
+    document.forms["form"].elements["NameTa"].readOnly = false;
+    document.forms["form"].elements["NameTa"].required = true;
+    document.forms["form"].elements["submit"].value = "Submit";
+  }
+</script> -->

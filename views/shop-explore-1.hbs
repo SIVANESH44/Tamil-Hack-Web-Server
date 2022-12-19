@@ -1,0 +1,133 @@
+<style>
+    *{
+    color: white;
+}
+.login-main{
+    margin-top: 100px;
+    width: 60%;
+    margin-left: 20%;
+}
+.content-main{
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.left{
+    padding-right: 10px;
+}
+
+.logout{
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:5px;
+    top: 10px;
+    right: 30px;
+    
+}
+
+.welcome{
+    color: red;
+    font-weight: bold;
+}
+.flex{
+    display:inline-block;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.welcome-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.bill-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcome-right{
+    margin-top: 10px;
+}
+
+.total-amount{
+    text-align: right;
+    margin-right: 158px;
+    font-weight: bold;
+}
+
+.shop-del{
+    position: relative;
+    top:5px;
+}
+
+.item-edit{
+    position: relative;
+    top:5px;
+    margin-right: 5px;
+}
+</style>
+
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2><span class="welcome">{{shop.shopNameTamil}}</span> !</h2>
+        <h5>
+            <button type="button" class="btn btn-dark btn-sm" style="font-weight:bold">
+                <i class="fa-solid fa-phone"></i> &nbsp; &nbsp; {{shop.shopPhone}}</button>
+            <a href="/{{shop._id}}/qr">
+             <button type="button" class="btn btn-danger btn-sm"  style="font-weight:bold;">
+                <i class="fa-sharp fa-solid fa-qrcode"></i> &nbsp;QR குறியீடு</button></a>
+                </h5>
+    </div>
+    <div class="welcome-right">
+
+        <a href="/item/{{shopid}}/add">
+            <button type="button" class="btn btn-danger btn-lg" style="background-color: #e51e2a">சேர்க்க</button>
+        </a>
+    </div>
+</div>
+
+<br>
+
+{{#if items}}
+{{#each items}}
+    <div class="flex">
+    <div class="shopkeeper-shops" style="padding-bottom:20px">
+        <div class="card" style="width: 25rem; border-left: 6px solid red;">
+            <div class="card-body">
+                <div style="display : flex">
+                    <div>
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:20px">{{itemNameTamil}}</h5>
+                        <br>
+                        <button type="button" class="btn btn-dark" style="font-weight:bold;"><i class="fa-sharp fa-solid fa-indian-rupee-sign"></i> &nbsp;{{itemPrice}}</button>
+                        <button type="button" class="btn btn-warning" style="font-weight:bold;">இருப்பு : {{itemQuantity}}</button>
+                        <br>
+                        <div style="display:flex;">
+                            <a href="/item/{{_id}}/edit" class="btn btn-primary item-edit"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                            <form action="/item/{{_id}}/delete" method="post" class="shop-del">
+                                <input type="hidden" name="_method" value="delete">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div style="padding-left: 40px; background :cover">
+                            <img src="{{itemImage}}" height="120px" width="120px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+{{/each}}
+{{else}}
+    <div>
+        <h1 class="welcome">பொருட்கள் சேர்க்கப்படவில்லை !</h1>
+    </div>
+{{/if}}
